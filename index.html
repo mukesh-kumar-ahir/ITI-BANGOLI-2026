@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Login</title>
+</head>
+<body>
+
+<h2>Login Page</h2>
+
+User ID:
+<input type="text" id="user"><br><br>
+
+Password:
+<input type="password" id="pass"><br><br>
+
+CAPTCHA:
+<span id="cap"></span>
+<button onclick="captcha()">New</button>
+<br><br>
+
+Enter CAPTCHA:
+<input type="text" id="input"><br><br>
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+<p id="demo"></p>
+
+<button onclick="showDate()">Show Date</button>
+
+
+<script>
+let code = "";
+
+function captcha() {
+    code = Math.floor(1000 + Math.random() * 9000);
+    document.getElementById("cap").innerHTML = code;
+}
+
+captcha();
+
+function login() {
+
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+    let c = document.getElementById("input").value;
+
+    if (c != code) {
+        document.getElementById("msg").innerHTML = "Wrong CAPTCHA";
+    }
+    else if (u == "admin" && p == "1234") {
+        window.location = "cap.html";
+    }
+    else {
+        document.getElementById("msg").innerHTML = "Wrong User ID or Password";
+    }
+
+}
+
+
+function showDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+</script>
+</body>
+</html>
